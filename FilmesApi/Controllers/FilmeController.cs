@@ -17,10 +17,10 @@ namespace FilmesApi.Controllers
     {
         public static List<Filme> filmes = new List<Filme>();
         public static int Id = 1;
-        private FilmeContext _context;
+        private AppDbContext _context;
         private IMapper _mapper;
 
-        public FilmeController(FilmeContext context, IMapper mapper)
+        public FilmeController(AppDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
