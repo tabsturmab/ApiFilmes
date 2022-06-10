@@ -50,7 +50,15 @@
               "target": "Package",
               "version": "[8.1.1, )"
             },
+            "FluentResults": {
+              "target": "Package",
+              "version": "[2.5.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Proxies": {
               "target": "Package",
               "version": "[5.0.5, )"
             },

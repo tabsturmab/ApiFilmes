@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using FilmesApi.Data.Dtos;
 using FilmesApi.Data.Dtos.Cimena;
 using FilmesApi.Models;
+using FilmesAPI.Data.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;

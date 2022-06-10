@@ -11,7 +11,6 @@ C:\Users\Andre Silva\source\repos\Api_Filmes\FilmesApi\FilmesApi\bin\Debug\net5.
 C:\Users\Andre Silva\source\repos\Api_Filmes\FilmesApi\FilmesApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\Andre Silva\source\repos\Api_Filmes\FilmesApi\FilmesApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\Andre Silva\source\repos\Api_Filmes\FilmesApi\FilmesApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-C:\Users\Andre Silva\source\repos\Api_Filmes\FilmesApi\FilmesApi\obj\Debug\net5.0\FilmesApi.csproj.AssemblyReference.cache
 C:\Users\Andre Silva\source\repos\Api_Filmes\FilmesApi\FilmesApi\obj\Debug\net5.0\FilmesApi.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Andre Silva\source\repos\Api_Filmes\FilmesApi\FilmesApi\obj\Debug\net5.0\FilmesApi.AssemblyInfoInputs.cache
 C:\Users\Andre Silva\source\repos\Api_Filmes\FilmesApi\FilmesApi\obj\Debug\net5.0\FilmesApi.AssemblyInfo.cs
@@ -48,3 +47,6 @@ C:\Users\Andre Silva\source\repos\Api_Filmes\FilmesApi\FilmesApi\bin\Debug\net5.
 C:\Users\Andre Silva\source\repos\Api_Filmes\FilmesApi\FilmesApi\obj\Debug\net5.0\FilmesApi.csproj.CopyComplete
 C:\Users\Andre Silva\source\repos\Api_Filmes\FilmesApi\FilmesApi\bin\Debug\net5.0\AutoMapper.dll
 C:\Users\Andre Silva\source\repos\Api_Filmes\FilmesApi\FilmesApi\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Andre Silva\source\repos\Api_Filmes\FilmesApi\FilmesApi\bin\Debug\net5.0\Castle.Core.dll
+C:\Users\Andre Silva\source\repos\Api_Filmes\FilmesApi\FilmesApi\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Proxies.dll
+C:\Users\Andre Silva\source\repos\Api_Filmes\FilmesApi\FilmesApi\bin\Debug\net5.0\FluentResults.dll
