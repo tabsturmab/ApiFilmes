@@ -1,8 +1,7 @@
-using FilmesApi.Data;
-using FilmesApi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -14,8 +13,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using UsuariosApi.Data.Dtos;
+using UsuariosApi.Services;
 
-namespace FilmesApi
+namespace UsuariosApi
 {
     public class Startup
     {
@@ -29,14 +30,14 @@ namespace FilmesApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppDbContext>(opts => opts.UseLazyLoadingProxies().UseMySQL(Configuration.GetConnectionString("FilmeConnection")));
-            services.AddScoped<FilmeService, FilmeService>();
-            services.AddScoped<CinemaService, CinemaService>();
-            services.AddScoped<EnderecoService, EnderecoService>();
-            services.AddScoped<GerenteService, GerenteService>();
-            services.AddScoped<SessaoService, SessaoService>();
+            services.AddDbContext<UserDbContext>(options =>
+            options.UseMySQL(Configuration.GetConnectionString("UsuarioConnection")));
+            services.AddIdentity<IdentityUser<int>, IdentityRole<int>>()
+                .AddEntityFrameworkStores<UserDbContext>();
             services.AddControllers();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddScoped<CadastroService, CadastroService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
