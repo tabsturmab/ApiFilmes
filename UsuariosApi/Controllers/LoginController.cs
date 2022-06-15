@@ -19,12 +19,25 @@ namespace UsuariosApi.Controllers
         {
             _loginService = loginService;
         }
-
         [HttpPost]
         public IActionResult LogarUsuario(LoginRequest request)
         {
             Result resultado = _loginService.LogarUsuario(request);
             if (resultado.IsFailed) return Unauthorized(resultado.Errors);
+            return Ok(resultado.Successes);
+        }
+        [HttpPost("/solicitar-reset")]
+        public IActionResult SolicitarResetSenhaUsuario(SolicitaResetRequest request)
+        {
+            Result resultado = _loginService.SolicitarResetSenhaUsuario(request);
+            if (resultado.IsFailed) return StatusCode(500);
+            return Ok(resultado.Successes);
+        }
+        [HttpPost("/efetuar-reset")]
+        public IActionResult ResetrSenhaUsuario(EfetuaResetRequest request)
+        {
+            Result resultado = _loginService.ResetarSenhaUsuario(request);
+            if (resultado.IsFailed) return StatusCode(500);
             return Ok(resultado.Successes);
         }
     }
