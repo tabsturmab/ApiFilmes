@@ -24,36 +24,35 @@ namespace UsuariosApi
         {
             Configuration = configuration;
         }
-
         public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<UserDbContext>(options =>
             options.UseMySQL(Configuration.GetConnectionString("UsuarioConnection")));
-            services.AddIdentity<IdentityUser<int>, IdentityRole<int>>()
-                .AddEntityFrameworkStores<UserDbContext>();
+            services.AddIdentity<IdentityUser<int>, IdentityRole<int>>(opt =>
+            {
+                opt.SignIn.RequireConfirmedEmail = true;
+            })
+                    .AddEntityFrameworkStores<UserDbContext>()
+                    .AddDefaultTokenProviders();
             services.AddControllers();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddScoped<EmailService, EmailService>();
             services.AddScoped<CadastroService, CadastroService>();
-
+            services.AddScoped<TokenService, TokenService>();
+            services.AddScoped<LoginService, LoginService>();
+            services.AddScoped<LogoutService, LogoutService>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-
             app.UseHttpsRedirection();
-
             app.UseRouting();
-
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
