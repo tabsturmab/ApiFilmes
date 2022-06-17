@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using FilmesApi.Data;
-using FilmesApi.Data.Dtos.Endereco;
 using FilmesApi.Models;
+using FilmesAPI.Data.Dtos;
 using FluentResults;
 using System;
 using System.Collections.Generic;
@@ -21,7 +21,7 @@ namespace FilmesApi.Services
             _mapper = mapper;
         }
 
-        public ReadEnderecoDto AdicionarEndereco(CreateEnderecoDto enderecoDto)
+        public ReadEnderecoDto AdicionaEndereco(CreateEnderecoDto enderecoDto)
         {
             Endereco endereco = _mapper.Map<Endereco>(enderecoDto);
             _context.Enderecos.Add(endereco);
@@ -29,7 +29,7 @@ namespace FilmesApi.Services
             return _mapper.Map<ReadEnderecoDto>(endereco);
         }
 
-        public List<ReadEnderecoDto> RecuperarEnderecos()
+        public List<ReadEnderecoDto> RecuperaEnderecos()
         {
             List<Endereco> enderecos = _context.Enderecos.ToList();
             if (enderecos == null)
@@ -39,7 +39,7 @@ namespace FilmesApi.Services
             return _mapper.Map<List<ReadEnderecoDto>>(enderecos);
         }
 
-        internal ReadEnderecoDto RecuperarEnderecosPorId(int id)
+        internal ReadEnderecoDto RecuperaEnderecosPorId(int id)
         {
             Endereco endereco = _context.Enderecos.FirstOrDefault(endereco => endereco.Id == id);
             if (endereco != null)
@@ -51,7 +51,7 @@ namespace FilmesApi.Services
             return null;
         }
 
-        public Result AtualizarEndereco(int id, UpdateEnderecoDto enderecoDto)
+        public Result AtualizaEndereco(int id, UpdateEnderecoDto enderecoDto)
         {
             Endereco endereco = _context.Enderecos.FirstOrDefault(endereco => endereco.Id == id);
             if (endereco == null)
@@ -63,7 +63,7 @@ namespace FilmesApi.Services
             return Result.Ok();
         }
 
-        internal Result DeletarEndereco(int id)
+        internal Result DeletaEndereco(int id)
         {
             Endereco endereco = _context.Enderecos.FirstOrDefault(endereco => endereco.Id == id);
             if (endereco == null)

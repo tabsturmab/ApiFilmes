@@ -7,6 +7,6 @@ namespace FilmesApi.Data.Dtos.Gerente
 {
     public class CreateGerenteDto
     {
-        public string NomeGerente { get; set; }
+        public string Nome { get; set; }
     }
 }

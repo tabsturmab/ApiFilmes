@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace UsuariosApi.Data.Dtos
+namespace UsuariosApi.Data.Dtos.Usuario
 {
     public class CreateUsuarioDto
     {
@@ -12,12 +12,15 @@ namespace UsuariosApi.Data.Dtos
         public string Username { get; set; }
         [Required]
         public string Email { get; set; }
-        [Required]
         [DataType(DataType.Password)]
+        [Required]
         public string Password { get; set; }
         [DataType(DataType.Password)]
         [Required]
         [Compare("Password")]
         public string RePassword { get; set; }
+        [Required]
+        public DateTime DataNascimento { get; set; }
+
     }
 }

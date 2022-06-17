@@ -1,9 +1,6 @@
 ﻿using FilmesApi.Models;
+using FilmesAPI.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FilmesApi.Data
 {
@@ -26,7 +23,6 @@ namespace FilmesApi.Data
                 .WithMany(gerente => gerente.Cinemas)
                 .HasForeignKey(cinema => cinema.GerenteId);
 
-
             builder.Entity<Sessao>()
                 .HasOne(sessao => sessao.Filme)
                 .WithMany(filme => filme.Sessoes)
@@ -36,6 +32,7 @@ namespace FilmesApi.Data
                 .HasOne(sessao => sessao.Cinema)
                 .WithMany(cinema => cinema.Sessoes)
                 .HasForeignKey(sessao => sessao.CinemaId);
+
         }
 
         public DbSet<Filme> Filmes { get; set; }

@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using UsuariosApi.Data.Dtos;
+using UsuariosApi.Data.Dtos.Usuario;
 using UsuariosApi.Models;
 
 namespace UsuariosApi.Profiles
@@ -15,6 +15,7 @@ namespace UsuariosApi.Profiles
         {
             CreateMap<CreateUsuarioDto, Usuario>();
             CreateMap<Usuario, IdentityUser<int>>();
+            CreateMap<Usuario, CustomIdentityUser>();
         }
     }
 }

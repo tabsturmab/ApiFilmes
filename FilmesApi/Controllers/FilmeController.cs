@@ -1,18 +1,12 @@
-﻿using AutoMapper;
-using FilmesApi.Data;
-using FilmesApi.Data.Dtos;
-using FilmesApi.Models;
-using FilmesApi.Services;
+﻿using FilmesApi.Services;
+using FilmesAPI.Data.Dtos;
 using FluentResults;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace FilmesApi.Controllers
+namespace FilmesAPI.Controllers
 {
-
     [ApiController]
     [Route("[controller]")]
     public class FilmeController : ControllerBase
@@ -25,41 +19,43 @@ namespace FilmesApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult AdicionarFilme([FromBody] CreateFilmeDto filmeDto)
+        [Authorize(Roles = "admin")]
+        public IActionResult AdicionaFilme([FromBody] CreateFilmeDto filmeDto)
         {
-            ReadFilmeDto readDto = _filmeService.AdicionarFilme(filmeDto);
-            return CreatedAtAction(nameof(RecuperarFilmesPorId), new { Id = readDto.Id }, readDto);
+            ReadFilmeDto readDto = _filmeService.AdicionaFilme(filmeDto);
+            return CreatedAtAction(nameof(RecuperaFilmesPorId), new { Id = readDto.Id }, readDto);
         }
 
         [HttpGet]
-        public IActionResult RecuperarFilmes([FromQuery] int? classificacaoEtaria = null)
+        [Authorize(Roles = "admin, regular", Policy = "IdadeMinima")]
+        public IActionResult RecuperaFilmes([FromQuery] int? classificacaoEtaria = null)
         {
-            List<ReadFilmeDto> readDto = _filmeService.RecuperarFilmes(classificacaoEtaria);
+            List<ReadFilmeDto> readDto = _filmeService.RecuperaFilmes(classificacaoEtaria);
             if (readDto == null) return NotFound();
             return Ok(readDto);
         }
 
         [HttpGet("{id}")]
-        public IActionResult RecuperarFilmesPorId(int id)
+        public IActionResult RecuperaFilmesPorId(int id)
         {
-            ReadFilmeDto readDto = _filmeService.RecuperarFilmesPorId(id);
+            ReadFilmeDto readDto = _filmeService.RecuperaFilmesPorId(id);
             if (readDto == null) return NotFound();
             return Ok(readDto);
-
+            
         }
 
         [HttpPut("{id}")]
-        public IActionResult AtualizarFilme(int id, [FromBody] UpdateFilmeDto filmeDto)
+        public IActionResult AtualizaFilme(int id, [FromBody] UpdateFilmeDto filmeDto)
         {
-            Result resultado = _filmeService.AtualizarFilme(id, filmeDto);
+            Result resultado = _filmeService.AtualizaFilme(id, filmeDto);
             if (resultado.IsFailed) return NotFound();
             return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeletarFilme(int id)
+        public IActionResult DeletaFilme(int id)
         {
-            Result resultado = _filmeService.DeletarFilme(id);
+            Result resultado = _filmeService.DeletaFilme(id);
             if (resultado.IsFailed) return NotFound();
             return NoContent();
         }

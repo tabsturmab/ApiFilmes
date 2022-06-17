@@ -24,27 +24,26 @@ namespace FilmesApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult AdicionarGerente(CreateGerenteDto dto)
+        public IActionResult AdicionaGerente(CreateGerenteDto dto)
         {
-            ReadGerenteDto readDto = _gerenteService.AdicionarGerente(dto);
-            return CreatedAtAction(nameof(RecuperarGerentesPorId), new { Id = readDto.Id }, readDto);
+            ReadGerenteDto readDto = _gerenteService.AdicionaGerente(dto);
+            return CreatedAtAction(nameof(RecuperaGerentesPorId), new { Id = readDto.Id }, readDto);
         }
 
         [HttpGet("{id}")]
-        public IActionResult RecuperarGerentesPorId(int id)
+        public IActionResult RecuperaGerentesPorId(int id)
         {
-            ReadGerenteDto readDto = _gerenteService.RecuperarGerentesPorId(id);
+            ReadGerenteDto readDto = _gerenteService.RecuperaGerentesPorId(id);
             if (readDto == null) return NotFound();
             return Ok(readDto);
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeletarGerente(int id)
+        public IActionResult DeletaGerente(int id)
         {
-            Result resultado = _gerenteService.DeletarGerente(id);
+            Result resultado = _gerenteService.DeleteGerente(id);
             if (resultado.IsFailed) return NotFound();
             return NoContent();
         }
-
     }
 }

@@ -23,16 +23,16 @@ namespace FilmesApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult AdicionarSessao(CreateSessaoDto dto)
+        public IActionResult AdicionaSessao(CreateSessaoDto dto)
         {
-            ReadSessaoDto readDto = _sessaoService.AdicionarSessao(dto);
-            return CreatedAtAction(nameof(RecuperarSessoesPorId), new { Id = readDto.Id }, readDto);
+            ReadSessaoDto readDto = _sessaoService.AdicionaSessao(dto);
+            return CreatedAtAction(nameof(RecuperaSessoesPorId), new { Id = readDto.Id }, readDto);
         }
 
         [HttpGet("{id}")]
-        public IActionResult RecuperarSessoesPorId(int id)
+        public IActionResult RecuperaSessoesPorId(int id)
         {
-            ReadSessaoDto readDto = _sessaoService.RecuperarSessoesPorId(id);
+            ReadSessaoDto readDto = _sessaoService.RecuperaSessoesPorId(id);
             if (readDto == null) return NotFound();
             return Ok(readDto);
         }

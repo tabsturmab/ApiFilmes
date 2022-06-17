@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using FilmesApi.Data;
-using FilmesApi.Data.Dtos;
-using FilmesApi.Models;
+using FilmesAPI.Data.Dtos;
+using FilmesAPI.Models;
 using FluentResults;
 using System;
 using System.Collections.Generic;
@@ -21,7 +21,7 @@ namespace FilmesApi.Services
             _mapper = mapper;
         }
 
-        public ReadFilmeDto AdicionarFilme(CreateFilmeDto filmeDto)
+        public ReadFilmeDto AdicionaFilme(CreateFilmeDto filmeDto)
         {
             Filme filme = _mapper.Map<Filme>(filmeDto);
             _context.Filmes.Add(filme);
@@ -29,7 +29,7 @@ namespace FilmesApi.Services
             return _mapper.Map<ReadFilmeDto>(filme);
         }
 
-        public List<ReadFilmeDto> RecuperarFilmes(int? classificacaoEtaria)
+        public List<ReadFilmeDto> RecuperaFilmes(int? classificacaoEtaria)
         {
             List<Filme> filmes;
             if (classificacaoEtaria == null)
@@ -50,7 +50,7 @@ namespace FilmesApi.Services
             return null;
         }
 
-        public ReadFilmeDto RecuperarFilmesPorId(int id)
+        public ReadFilmeDto RecuperaFilmesPorId(int id)
         {
             Filme filme = _context.Filmes.FirstOrDefault(filme => filme.Id == id);
             if (filme != null)
@@ -62,7 +62,7 @@ namespace FilmesApi.Services
             return null;
         }
 
-        public Result AtualizarFilme(int id, UpdateFilmeDto filmeDto)
+        public Result AtualizaFilme(int id, UpdateFilmeDto filmeDto)
         {
             Filme filme = _context.Filmes.FirstOrDefault(filme => filme.Id == id);
             if (filme == null)
@@ -74,7 +74,7 @@ namespace FilmesApi.Services
             return Result.Ok();
         }
 
-        public Result DeletarFilme(int id)
+        public Result DeletaFilme(int id)
         {
             Filme filme = _context.Filmes.FirstOrDefault(filme => filme.Id == id);
             if (filme == null)

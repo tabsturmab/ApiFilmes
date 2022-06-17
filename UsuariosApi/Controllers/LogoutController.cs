@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using UsuariosApi.Data.Requests;
 using UsuariosApi.Services;
 
 namespace UsuariosApi.Controllers
@@ -20,9 +21,9 @@ namespace UsuariosApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult DeslogarUsuario()
+        public IActionResult DeslogaUsuario()
         {
-            Result resultado = _logoutService.DeslogarUsuario();
+            Result resultado = _logoutService.DeslogaUsuario();
             if (resultado.IsFailed) return Unauthorized(resultado.Errors);
             return Ok(resultado.Successes);
         }

@@ -1,16 +1,13 @@
-﻿using MailKit.Net.Smtp;
+using MailKit.Net.Smtp;
 using Microsoft.Extensions.Configuration;
 using MimeKit;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using UsuariosApi.Models;
 
 namespace UsuariosApi.Services
 {
     public class EmailService
     {
+
         private IConfiguration _configuration;
 
         public EmailService(IConfiguration configuration)
@@ -34,7 +31,7 @@ namespace UsuariosApi.Services
                 try
                 {
                     client.Connect(_configuration.GetValue<string>("EmailSettings:SmtpServer"),
-                        _configuration.GetValue<int>("EmailSettings:Port"), false);
+                        _configuration.GetValue<int>("EmailSettings:Port"), true);
                     client.AuthenticationMechanisms.Remove("XOUATH2");
                     client.Authenticate(_configuration.GetValue<string>("EmailSettings:From"),
                         _configuration.GetValue<string>("EmailSettings:Password"));

@@ -20,7 +20,7 @@ namespace FilmesApi.Services
             _mapper = mapper;
         }
 
-        public ReadSessaoDto AdicionarSessao(CreateSessaoDto dto)
+        public ReadSessaoDto AdicionaSessao(CreateSessaoDto dto)
         {
             Sessao sessao = _mapper.Map<Sessao>(dto);
             _context.Sessoes.Add(sessao);
@@ -28,7 +28,7 @@ namespace FilmesApi.Services
             return _mapper.Map<ReadSessaoDto>(sessao);
         }
 
-        public ReadSessaoDto RecuperarSessoesPorId(int id)
+        public ReadSessaoDto RecuperaSessoesPorId(int id)
         {
             Sessao sessao = _context.Sessoes.FirstOrDefault(sessao => sessao.Id == id);
             if (sessao != null)

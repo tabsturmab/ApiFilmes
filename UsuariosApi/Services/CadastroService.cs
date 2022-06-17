@@ -1,12 +1,10 @@
-﻿using AutoMapper;
+using AutoMapper;
 using FluentResults;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
-using UsuariosApi.Data.Dtos;
+using UsuariosApi.Data.Dtos.Usuario;
 using UsuariosApi.Data.Requests;
 using UsuariosApi.Models;
 
@@ -14,25 +12,27 @@ namespace UsuariosApi.Services
 {
     public class CadastroService
     {
+
         private IMapper _mapper;
-        private UserManager<IdentityUser<int>> _userManager;
+        private UserManager<CustomIdentityUser> _userManager;
         private EmailService _emailService;
 
         public CadastroService(IMapper mapper,
-            UserManager<IdentityUser<int>> userManager,
-            EmailService emailService)
+            UserManager<CustomIdentityUser> userManager,
+            EmailService emailService, RoleManager<IdentityRole<int>> roleManager)
         {
             _mapper = mapper;
             _userManager = userManager;
             _emailService = emailService;
         }
 
-        public Result CadastrarUsuario(CreateUsuarioDto createDto)
+        public Result CadastraUsuario(CreateUsuarioDto createDto)
         {
             Usuario usuario = _mapper.Map<Usuario>(createDto);
-            IdentityUser<int> usuarioIdentity = _mapper.Map<IdentityUser<int>>(usuario);
+            CustomIdentityUser usuarioIdentity = _mapper.Map<CustomIdentityUser>(usuario);
             Task<IdentityResult> resultadoIdentity = _userManager
                 .CreateAsync(usuarioIdentity, createDto.Password);
+            _userManager.AddToRoleAsync(usuarioIdentity, "regular");
             if (resultadoIdentity.Result.Succeeded)
             {
                 var code = _userManager
@@ -48,7 +48,7 @@ namespace UsuariosApi.Services
 
         }
 
-        public Result AtivarContaUsuario(AtivaContaRequest request)
+        public Result AtivaContaUsuario(AtivaContaRequest request)
         {
             var identityUser = _userManager
                 .Users

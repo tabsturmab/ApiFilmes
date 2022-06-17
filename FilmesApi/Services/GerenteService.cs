@@ -21,7 +21,7 @@ namespace FilmesApi.Services
             _mapper = mapper;
         }
 
-        public ReadGerenteDto AdicionarGerente(CreateGerenteDto dto)
+        public ReadGerenteDto AdicionaGerente(CreateGerenteDto dto)
         {
             Gerente gerente = _mapper.Map<Gerente>(dto);
             _context.Gerentes.Add(gerente);
@@ -29,7 +29,7 @@ namespace FilmesApi.Services
             return _mapper.Map<ReadGerenteDto>(gerente);
         }
 
-        public ReadGerenteDto RecuperarGerentesPorId(int id)
+        public ReadGerenteDto RecuperaGerentesPorId(int id)
         {
             Gerente gerente = _context.Gerentes.FirstOrDefault(gerente => gerente.Id == id);
             if (gerente != null)
@@ -41,7 +41,7 @@ namespace FilmesApi.Services
             return null;
         }
 
-        internal Result DeletarGerente(int id)
+        internal Result DeleteGerente(int id)
         {
             Gerente gerente = _context.Gerentes.FirstOrDefault(gerente => gerente.Id == id);
             if (gerente == null)
