@@ -31,7 +31,7 @@ namespace UsuariosApi.Services
                 try
                 {
                     client.Connect(_configuration.GetValue<string>("EmailSettings:SmtpServer"),
-                        _configuration.GetValue<int>("EmailSettings:Port"), true);
+                        _configuration.GetValue<int>("EmailSettings:Port"), false);
                     client.AuthenticationMechanisms.Remove("XOUATH2");
                     client.Authenticate(_configuration.GetValue<string>("EmailSettings:From"),
                         _configuration.GetValue<string>("EmailSettings:Password"));
@@ -60,7 +60,6 @@ namespace UsuariosApi.Services
             {
                 Text = mensagem.Conteudo
             };
-
             return mensagemDeEmail;
         }
     }

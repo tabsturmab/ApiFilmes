@@ -25,8 +25,8 @@ namespace UsuariosApi.Data
             {
                 UserName = "admin",
                 NormalizedUserName = "ADMIN",
-                Email = "epic_blues@hotmail.com",
-                NormalizedEmail = "EPIC_BLUES@HOTMAIL.COM",
+                Email = "admin@admin.com",
+                NormalizedEmail = "ADMIN@ADMIN.COM",
                 EmailConfirmed = true,
                 SecurityStamp = Guid.NewGuid().ToString(),
                 Id = 99999
